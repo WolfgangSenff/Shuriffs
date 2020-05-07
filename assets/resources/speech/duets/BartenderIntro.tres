@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://assets/resources/speech/Duet.gd" type="Script" id=1]
+[ext_resource path="res://assets/resources/speech/npcs/BartenderIntroIndividual.tres" type="Resource" id=2]
+[ext_resource path="res://assets/resources/speech/sheriffs/DanIntro.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+FirstSpeaker = ExtResource( 2 )
+SecondSpeaker = ExtResource( 3 )
+SpeechKeys = {
+0: "Intro1",
+1: "DanIntro1",
+2: "Intro2",
+3: "DanIntro2"
+}

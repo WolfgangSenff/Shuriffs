@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/gui/SpeechControl.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Talk"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterContainer/RichTextLabel:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="SpeechControl" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+custom_constants/separation = 60
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureCenter" type="MarginContainer" parent="."]
+margin_left = 247.0
+margin_right = 417.0
+margin_bottom = 600.0
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="TextureCenter"]
+margin_left = 20.0
+margin_top = 225.0
+margin_right = 170.0
+margin_bottom = 375.0
+rect_min_size = Vector2( 150, 150 )
+size_flags_vertical = 6
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+margin_left = 477.0
+margin_right = 777.0
+margin_bottom = 600.0
+custom_constants/margin_top = 25
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+margin_top = 25.0
+margin_right = 300.0
+margin_bottom = 580.0
+rect_min_size = Vector2( 300, 50 )
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 5
+bbcode_enabled = true
+visible_characters = 0
+percent_visible = 0.0
+meta_underlined = false
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Talk = SubResource( 1 )

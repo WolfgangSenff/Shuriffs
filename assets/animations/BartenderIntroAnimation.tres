@@ -1,0 +1,51 @@
+[gd_resource type="Animation" load_steps=2 format=2]
+
+[ext_resource path="res://assets/resources/speech/duets/BartenderIntro.tres" type="Resource" id=1]
+
+[resource]
+resource_name = "BartenderSceneIntro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sheriff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 297.406, 261.796 ), Vector2( 774.999, 286.064 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sheriff:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.3, 3.6, 3.9, 4.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.42385, 6.75239, -5.42385, 6.75239, -5.42385, 6.75239, -5.42385, 6.75239, -5.42385, 6.75239, -5.42385, 6.75239, -5.42385, 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("CanvasLayer/Frame/DuetPopup")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5.2, 19.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ ExtResource( 1 ) ],
+"method": "set_duet"
+}, {
+"args": [  ],
+"method": "play"
+}, {
+"args": [  ],
+"method": "hide"
+} ]
+}

@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/effects/DustCloud-particles.png" type="Texture" id=4]
+[ext_resource path="res://scenes/gui/StartScreenButton.gd" type="Script" id=5]
+[ext_resource path="res://assets/characters/npcs/RunningHorseSpritesheet.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Default"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Tail:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Start"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Tail:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="StartScreenButton" type="TextureButton" groups=[
+"StartScreenButton",
+]]
+margin_right = 200.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 200, 110 )
+expand = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tail" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2( 224.824, 79.0209 )
+emitting = false
+amount = 150
+lifetime = 0.7
+randomness = 0.6
+lifetime_randomness = 1.0
+local_coords = false
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 8.0
+flag_align_y = true
+direction = Vector2( 0, 1 )
+spread = 180.0
+gravity = Vector2( 0, 20 )
+initial_velocity = 0.1
+angular_velocity = 0.5
+radial_accel = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Start"
+playback_speed = 0.5
+anims/Default = SubResource( 1 )
+anims/Start = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 233.09, 66.9798 )
+texture = ExtResource( 6 )
+flip_h = true
+hframes = 3

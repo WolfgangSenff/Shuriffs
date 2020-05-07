@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/characters/sheriffs/Dan.png" type="Texture" id=1]
+[ext_resource path="res://scenes/characters/Sheriff.gd" type="Script" id=2]
+[ext_resource path="res://assets/shaders/OutlineShader.tres" type="Material" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.791
+height = 44.0965
+
+[sub_resource type="Animation" id=2]
+resource_name = "Select"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="Sheriff" type="Sprite"]
+material = ExtResource( 3 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0.950806, 2.53549 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 10.0
+anims/Select = SubResource( 2 )
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

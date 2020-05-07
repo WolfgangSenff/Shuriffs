@@ -1,0 +1,9 @@
+extends Node
+
+var current_sheriff_resource
+var current_enemy_resource
+var current_difficulty_resource
+var current_levels_list_resource
+
+var all_levels_list_resource
+var all_sheriffs_list_resource
