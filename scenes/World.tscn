@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://TouchScreenCamera.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/npcs/Bartender.tscn" type="PackedScene" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://scenes/gui/DuetPopup.gd" type="Script" id=11]
 [ext_resource path="res://assets/resources/speech/duets/BartenderIntro.tres" type="Resource" id=12]
 [ext_resource path="res://assets/fonts/gomarice_nandaka_western.ttf" type="DynamicFontData" id=13]
-
+[ext_resource path="res://assets/furniture/Wagon_v.png" type="Texture" id=14]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/SandTile_Full.png-095ed1841a14ebd45a8bf3a0313a3125.stex"
@@ -104,7 +104,7 @@ load_path = "res://.import/WoodTile_Full_v.png-7941c3a3d7c4c74fa2d3c981db95bcb0.
 1/shapes = [  ]
 1/z_index = 0
 
-[sub_resource type="TileSet" id=10]
+[sub_resource type="TileSet" id=8]
 0/name = "BarSpritesheet.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -148,10 +148,10 @@ load_path = "res://.import/WoodTile_Full_v.png-7941c3a3d7c4c74fa2d3c981db95bcb0.
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="OccluderPolygon2D" id=8]
+[sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( 48, 48, 111, 18, 111, 66, 48, 96 )
 
-[sub_resource type="TileSet" id=9]
+[sub_resource type="TileSet" id=10]
 0/name = "OverturnedTable.png 0"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
@@ -159,7 +159,7 @@ polygon = PoolVector2Array( 48, 48, 111, 18, 111, 66, 48, 96 )
 0/region = Rect2( 0, 0, 126, 103 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
-0/occluder = SubResource( 8 )
+0/occluder = SubResource( 9 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -236,7 +236,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=12]
 size = 22
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -245,10 +245,10 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 13 )
 
-[sub_resource type="Theme" id=14]
-default_font = SubResource( 13 )
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
 
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=14]
 content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 6.0
@@ -283,7 +283,7 @@ tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 
 
 [node name="UnderFurniture" type="TileMap" parent="."]
 mode = 1
-tile_set = SubResource( 10 )
+tile_set = SubResource( 8 )
 cell_size = Vector2( 124, 62 )
 format = 1
 tile_data = PoolIntArray( -196599, 2, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 1, 0 )
@@ -304,7 +304,7 @@ position = Vector2( 297.406, 261.796 )
 
 [node name="AboveFurniture" type="TileMap" parent="."]
 mode = 1
-tile_set = SubResource( 9 )
+tile_set = SubResource( 10 )
 cell_size = Vector2( 124, 62 )
 format = 1
 tile_data = PoolIntArray( 65547, 0, 0 )
@@ -312,6 +312,7 @@ tile_data = PoolIntArray( 65547, 0, 0 )
 [node name="Bartender" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "BartenderSceneIntro"
 anims/BartenderSceneIntro = SubResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -319,7 +320,7 @@ anims/BartenderSceneIntro = SubResource( 11 )
 [node name="Frame" type="NinePatchRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 14 )
+theme = SubResource( 13 )
 texture = ExtResource( 7 )
 patch_margin_left = 6
 patch_margin_top = 6
@@ -336,7 +337,7 @@ margin_left = -300.0
 margin_right = 300.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 600, 300 )
-custom_styles/panel = SubResource( 12 )
+custom_styles/panel = SubResource( 14 )
 popup_exclusive = true
 script = ExtResource( 11 )
 __meta__ = {
@@ -437,3 +438,7 @@ Height = 200
 Smoothing = 1.2
 LineStart = Vector2( -1000, 400 )
 LineEnd = Vector2( 2000, 600 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 688.899, 142.924 )
+texture = ExtResource( 14 )
