@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://assets/resources/speech/Duet.gd"
 }, {
 "base": "Resource",
+"class": "SheriffResource",
+"language": "GDScript",
+"path": "res://assets/resources/SheriffResource.gd"
+}, {
+"base": "Resource",
 "class": "Speech",
 "language": "GDScript",
 "path": "res://assets/resources/speech/IndividualSpeech.gd"
 } ]
 _global_script_class_icons={
 "Duet": "",
+"SheriffResource": "",
 "Speech": ""
 }
 
