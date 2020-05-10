@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://TouchScreenCamera.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/npcs/Bartender.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/furniture/OverturnedTable.png" type="Texture" id=3]
+[ext_resource path="res://assets/furniture/SandRock1_v.png" type="Texture" id=3]
 [ext_resource path="res://scenes/characters/sheriffs/Sheriff.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/furniture/BarSpritesheet.png" type="Texture" id=5]
 [ext_resource path="res://scenes/CutSceneBase.gd" type="Script" id=6]
@@ -13,7 +13,9 @@
 [ext_resource path="res://scenes/gui/DuetPopup.gd" type="Script" id=11]
 [ext_resource path="res://assets/resources/speech/duets/BartenderIntro.tres" type="Resource" id=12]
 [ext_resource path="res://assets/fonts/gomarice_nandaka_western.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://assets/furniture/Wagon_v.png" type="Texture" id=14]
+[ext_resource path="res://assets/WoodTile_Full_n.png" type="Texture" id=14]
+[ext_resource path="res://assets/furniture/Chair_v.png" type="Texture" id=15]
+[ext_resource path="res://assets/furniture/OverturnedTable_v.png" type="Texture" id=16]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/SandTile_Full.png-095ed1841a14ebd45a8bf3a0313a3125.stex"
@@ -77,6 +79,7 @@ load_path = "res://.import/WoodTile_Full_v.png-7941c3a3d7c4c74fa2d3c981db95bcb0.
 [sub_resource type="TileSet" id=7]
 0/name = "WoodTile_Full.png 0"
 0/texture = SubResource( 5 )
+0/normal_map = ExtResource( 14 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 126, 103 )
@@ -148,18 +151,47 @@ load_path = "res://.import/WoodTile_Full_v.png-7941c3a3d7c4c74fa2d3c981db95bcb0.
 2/shapes = [  ]
 2/z_index = 0
 
-[sub_resource type="OccluderPolygon2D" id=9]
-polygon = PoolVector2Array( 48, 48, 111, 18, 111, 66, 48, 96 )
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+render_mode unshaded;
+ 
+uniform float width : hint_range(0.0, 16.0);
+uniform vec4 outline_color : hint_color;
+ 
+void fragment()
+{
+    vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
+   
+    vec4 sprite_color = texture(TEXTURE, UV);
+   
+    float alpha = sprite_color.a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+   
+    vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
+    COLOR = vec4(final_color, clamp(alpha, 0.0, 1.0));
+}"
+custom_defines = ""
 
-[sub_resource type="TileSet" id=10]
-0/name = "OverturnedTable.png 0"
-0/texture = ExtResource( 3 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/width = 1.0
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="TileSet" id=11]
+0/name = "OverturnedTable_v.png 0"
+0/texture = ExtResource( 16 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 126, 103 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
-0/occluder = SubResource( 9 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -167,9 +199,22 @@ polygon = PoolVector2Array( 48, 48, 111, 18, 111, 66, 48, 96 )
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+1/name = "Chair_v.png 1"
+1/texture = ExtResource( 15 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, -1, 58, 90 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
-[sub_resource type="Animation" id=11]
-resource_name = "BartenderSceneIntro"
+[sub_resource type="Animation" id=12]
 length = 20.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("Bartender")
@@ -236,7 +281,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 22
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -245,10 +290,10 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 13 )
 
-[sub_resource type="Theme" id=13]
-default_font = SubResource( 12 )
+[sub_resource type="Theme" id=14]
+default_font = SubResource( 13 )
 
-[sub_resource type="StyleBoxTexture" id=14]
+[sub_resource type="StyleBoxTexture" id=15]
 content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 6.0
@@ -259,6 +304,14 @@ margin_left = 6.0
 margin_right = 6.0
 margin_top = 6.0
 margin_bottom = 6.0
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 9 )
+shader_param/width = 1.0
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StreamTexture" id=17]
+load_path = "res://.import/SandRock2_v.png-e1900314991708b453655e02c656c4d9.stex"
 
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
@@ -279,7 +332,7 @@ cell_size = Vector2( 124, 62 )
 cell_half_offset = 0
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -131056, 0, 0, -131055, 0, 0, -131054, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0 )
+tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 0, 0, -262128, 0, 0, -262127, 0, 0, -262126, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -196591, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -131056, 0, 0, -131055, 0, 0, -131054, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, 3, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 65553, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131089, 0, 0, 131090, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0 )
 
 [node name="UnderFurniture" type="TileMap" parent="."]
 mode = 1
@@ -303,30 +356,34 @@ script = ExtResource( 1 )
 position = Vector2( 297.406, 261.796 )
 
 [node name="AboveFurniture" type="TileMap" parent="."]
+material = SubResource( 10 )
 mode = 1
-tile_set = SubResource( 10 )
+tile_set = SubResource( 11 )
 cell_size = Vector2( 124, 62 )
+cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 65547, 0, 0 )
+tile_data = PoolIntArray( 14, 536870913, 0, 65549, 1, 0 )
 
 [node name="Bartender" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "BartenderSceneIntro"
-anims/BartenderSceneIntro = SubResource( 11 )
+anims/BartenderSceneIntro = SubResource( 12 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Frame" type="NinePatchRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 13 )
+theme = SubResource( 14 )
 texture = ExtResource( 7 )
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 __meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -337,7 +394,7 @@ margin_left = -300.0
 margin_right = 300.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 600, 300 )
-custom_styles/panel = SubResource( 14 )
+custom_styles/panel = SubResource( 15 )
 popup_exclusive = true
 script = ExtResource( 11 )
 __meta__ = {
@@ -439,6 +496,12 @@ Smoothing = 1.2
 LineStart = Vector2( -1000, 400 )
 LineEnd = Vector2( 2000, 600 )
 
+[node name="Sprite2" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 582.202, 277.356 )
+texture = ExtResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 688.899, 142.924 )
-texture = ExtResource( 14 )
+material = SubResource( 16 )
+position = Vector2( 557.788, 268.524 )
+texture = SubResource( 17 )

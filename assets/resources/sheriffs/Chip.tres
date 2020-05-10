@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/resources/SheriffResource.gd" type="Script" id=1]
+[ext_resource path="res://assets/characters/sheriffs/ChipPortrait.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+NickName = "Chip"
+FullName = "Robot Sheriff Heartswell"
+CharacterDescription = "Chip Heartswell was a plucky little robot growing up in West Donkeytown, but was very bored. It was a one-donkey town, after all. It decided to take up sheriffing to pass the time. Once per fight, due to its robot-y nature, it may stun all Underlings on the map for one turn."
+Portrait = ExtResource( 2 )
