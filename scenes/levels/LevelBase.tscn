@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scenes/environment/AStar2DTileMap.gd" type="Script" id=1]
+[ext_resource path="res://scenes/DefaultCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/tiles/sand_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/environment/RandomizedBackground.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/props/Reflectable.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/furniture/SandRock1_v.png" type="Texture" id=6]
+[ext_resource path="res://assets/furniture/SandRock2_v.png" type="Texture" id=7]
+[ext_resource path="res://scenes/levels/LevelBase.gd" type="Script" id=8]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+ 
+uniform float width : hint_range(0.0, 16.0);
+uniform vec4 outline_color : hint_color;
+ 
+void fragment()
+{
+    vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
+   
+    vec4 sprite_color = texture(TEXTURE, UV);
+   
+    float alpha = sprite_color.a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+   
+    vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
+    COLOR = vec4(final_color, clamp(alpha, 0.0, 1.0));
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/width = 0.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+render_mode unshaded;
+ 
+uniform float width : hint_range(0.0, 16.0);
+uniform vec4 outline_color : hint_color;
+ 
+void fragment()
+{
+    vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
+   
+    vec4 sprite_color = texture(TEXTURE, UV);
+   
+    float alpha = sprite_color.a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(0.0, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, 0.0)).a;
+    alpha += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+   
+    vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
+    COLOR = vec4(final_color, clamp(alpha, 0.0, 1.0));
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/width = 0.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="CapsuleShape2D" id=7]
+
+[node name="LevelBase" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="YSort" type="YSort" parent="."]
+skew = 4.37114e-08
+
+[node name="Ground" type="TileMap" parent="YSort"]
+skew = 4.37114e-08
+mode = 1
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 120, 60 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -196598, 1, 0, -196597, 1, 0, -196596, 1, 0, -196595, 1, 0, -196594, 1, 0, -196593, 1, 0, -196592, 1, 0, -196591, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -131062, 1, 0, -131061, 1, 0, -131060, 1, 0, -131059, 1, 0, -131058, 1, 0, -131057, 1, 0, -131056, 1, 0, -131055, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 1, 0, -65521, 1, 0, -65520, 1, 0, -65519, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 1, 0, 196625, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262161, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 327697, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 393232, 1, 0, 393233, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Props" type="Node" parent="YSort"]
+
+[node name="Reflectable" parent="YSort/Props" instance=ExtResource( 5 )]
+material = SubResource( 2 )
+position = Vector2( 559.751, 365.594 )
+texture = ExtResource( 7 )
+shape = SubResource( 6 )
+rotate_collision_shape = true
+reflection_direction = Vector2( 1, 1 )
+
+[node name="Reflectable2" parent="YSort/Props" instance=ExtResource( 5 )]
+material = SubResource( 5 )
+position = Vector2( 545.293, 411.035 )
+texture = ExtResource( 6 )
+shape = SubResource( 7 )
+rotate_collision_shape = true
+reflection_direction = Vector2( -1, -1 )
+
+[node name="PlayerHolder" type="YSort" parent="YSort"]
+skew = 4.37114e-08
+
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 600.98, 363.935 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]

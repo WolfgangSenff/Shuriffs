@@ -1,155 +1,20 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://TouchScreenCamera.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/npcs/Bartender.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/furniture/SandRock1_v.png" type="Texture" id=3]
+[ext_resource path="res://assets/tiles/furniture_tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/characters/sheriffs/Sheriff.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/furniture/BarSpritesheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles/more_furniture_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://scenes/CutSceneBase.gd" type="Script" id=6]
 [ext_resource path="res://assets/gui/GameFrame_ninepatch.png" type="Texture" id=7]
 [ext_resource path="res://assets/gui/SpeechFrame_ninepatch.png" type="Texture" id=8]
-[ext_resource path="res://addons/midpoint_displacement_line/MidpointDisplacementLine.gd" type="Script" id=9]
+[ext_resource path="res://scenes/environment/RandomizedBackground.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/gui/SpeechControl.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/gui/DuetPopup.gd" type="Script" id=11]
 [ext_resource path="res://assets/resources/speech/duets/BartenderIntro.tres" type="Resource" id=12]
 [ext_resource path="res://assets/fonts/gomarice_nandaka_western.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://assets/WoodTile_Full_n.png" type="Texture" id=14]
-[ext_resource path="res://assets/furniture/Chair_v.png" type="Texture" id=15]
-[ext_resource path="res://assets/furniture/OverturnedTable_v.png" type="Texture" id=16]
-
-[sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/SandTile_Full.png-095ed1841a14ebd45a8bf3a0313a3125.stex"
-
-[sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/SandTile_Full1.png-1dba034f0fc96c6c3c5afea168e06796.stex"
-
-[sub_resource type="StreamTexture" id=3]
-load_path = "res://.import/SandTile_Full1_v.png-550bcd868b1b79754f583bfa750775d3.stex"
-
-[sub_resource type="TileSet" id=4]
-1/name = "SandTile_Full.png 1"
-1/texture = SubResource( 1 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 124, 101 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "SandTile_Full1.png 2"
-2/texture = SubResource( 2 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 124, 101 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "SandTile_Full1_v.png 3"
-3/texture = SubResource( 3 )
-3/tex_offset = Vector2( 0, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 0, 124, 101 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-
-[sub_resource type="StreamTexture" id=5]
-load_path = "res://.import/WoodTile_Full.png-c58dbca82435cc6c63014c88823f2538.stex"
-
-[sub_resource type="StreamTexture" id=6]
-load_path = "res://.import/WoodTile_Full_v.png-7941c3a3d7c4c74fa2d3c981db95bcb0.stex"
-
-[sub_resource type="TileSet" id=7]
-0/name = "WoodTile_Full.png 0"
-0/texture = SubResource( 5 )
-0/normal_map = ExtResource( 14 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 126, 103 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = " 1"
-1/texture = SubResource( 6 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 126, 103 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-
-[sub_resource type="TileSet" id=8]
-0/name = "BarSpritesheet.png 0"
-0/texture = ExtResource( 5 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 126, 103 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "BarSpritesheet.png 1"
-1/texture = ExtResource( 5 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 126, 0, 126, 103 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "BarSpritesheet.png 2"
-2/texture = ExtResource( 5 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 252, 0, 126, 103 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
+[ext_resource path="res://assets/tiles/sand_tileset.tres" type="TileSet" id=14]
+[ext_resource path="res://assets/tiles/wood_floor_tileset.tres" type="TileSet" id=15]
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -183,36 +48,6 @@ custom_defines = ""
 shader = SubResource( 9 )
 shader_param/width = 1.0
 shader_param/outline_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="TileSet" id=11]
-0/name = "OverturnedTable_v.png 0"
-0/texture = ExtResource( 16 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 126, 103 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "Chair_v.png 1"
-1/texture = ExtResource( 15 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, -1, 58, 90 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
 
 [sub_resource type="Animation" id=12]
 length = 20.0
@@ -305,20 +140,14 @@ margin_right = 6.0
 margin_top = 6.0
 margin_bottom = 6.0
 
-[sub_resource type="ShaderMaterial" id=16]
-shader = SubResource( 9 )
-shader_param/width = 1.0
-shader_param/outline_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="StreamTexture" id=17]
-load_path = "res://.import/SandRock2_v.png-e1900314991708b453655e02c656c4d9.stex"
-
 [node name="World" type="Node2D"]
 script = ExtResource( 6 )
+IntroAnimation = "BartenderSceneIntro"
+IntroTimeout = 4.0
 
 [node name="Sand" type="TileMap" parent="."]
 mode = 1
-tile_set = SubResource( 4 )
+tile_set = ExtResource( 14 )
 cell_size = Vector2( 120, 60 )
 cell_y_sort = true
 format = 1
@@ -327,7 +156,7 @@ tile_data = PoolIntArray( -65527, 2, 0, 8, 2, 0, 15, 2, 0, 65546, 2, 0, 65547, 2
 [node name="Floorboards" type="TileMap" parent="."]
 position = Vector2( 0, 4 )
 mode = 1
-tile_set = SubResource( 7 )
+tile_set = ExtResource( 15 )
 cell_size = Vector2( 124, 62 )
 cell_half_offset = 0
 cell_y_sort = true
@@ -336,7 +165,7 @@ tile_data = PoolIntArray( -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 
 
 [node name="UnderFurniture" type="TileMap" parent="."]
 mode = 1
-tile_set = SubResource( 8 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 124, 62 )
 format = 1
 tile_data = PoolIntArray( -196599, 2, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 1, 0 )
@@ -358,7 +187,7 @@ position = Vector2( 297.406, 261.796 )
 [node name="AboveFurniture" type="TileMap" parent="."]
 material = SubResource( 10 )
 mode = 1
-tile_set = SubResource( 11 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 124, 62 )
 cell_y_sort = true
 format = 1
@@ -367,7 +196,6 @@ tile_data = PoolIntArray( 14, 536870913, 0, 65549, 1, 0 )
 [node name="Bartender" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "BartenderSceneIntro"
 anims/BartenderSceneIntro = SubResource( 12 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -425,83 +253,4 @@ margin_top = 12.0
 margin_right = 588.0
 margin_bottom = 288.0
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
-
-[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxBackground/ParallaxLayer4"]
-position = Vector2( 0.78479, 0 )
-width = 50.0
-default_color = Color( 1, 1, 1, 1 )
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource( 9 )
-Displacement = 200
-Iterations = 5
-Height = 600
-Smoothing = 0.65
-LineStart = Vector2( -1000, -40 )
-LineEnd = Vector2( 2000, 300 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.3, 1 )
-
-[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 0.78479, 0 )
-width = 30.0
-default_color = Color( 0.6, 0.6, 0.6, 1 )
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource( 9 )
-Displacement = 120
-Height = 350
-Smoothing = 0.9
-LineStart = Vector2( -1000, -20 )
-LineEnd = Vector2( 2000, -20 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
-
-[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 0.78479, 0 )
-width = 20.0
-default_color = Color( 0.686275, 0.623529, 0.388235, 1 )
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource( 9 )
-Displacement = 75
-Height = 200
-Smoothing = 1.0
-LineStart = Vector2( -1000, -5 )
-LineEnd = Vector2( 2000, -5 )
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.8, 1 )
-
-[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 0.78479, 0 )
-width = 20.0
-default_color = Color( 0.72549, 0.627451, 0.254902, 1 )
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-script = ExtResource( 9 )
-Displacement = 350
-Height = 200
-Smoothing = 1.2
-LineStart = Vector2( -1000, 400 )
-LineEnd = Vector2( 2000, 600 )
-
-[node name="Sprite2" type="Sprite" parent="."]
-material = SubResource( 16 )
-position = Vector2( 582.202, 277.356 )
-texture = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 16 )
-position = Vector2( 557.788, 268.524 )
-texture = SubResource( 17 )
+[node name="ParallaxBackground" parent="." instance=ExtResource( 9 )]

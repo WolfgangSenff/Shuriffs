@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/midpoint_displacement_line/MidpointDisplacementLine.gd" type="Script" id=1]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.2, 1 )
+
+[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxLayer4"]
+position = Vector2( 0.78479, 0 )
+width = 50.0
+default_color = Color( 1, 1, 1, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 1 )
+Displacement = 200
+Iterations = 5
+Height = 600
+Smoothing = 0.65
+LineStart = Vector2( -1000, -40 )
+LineEnd = Vector2( 2000, 300 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
+
+[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxLayer2"]
+position = Vector2( 0.78479, 0 )
+width = 30.0
+default_color = Color( 0.6, 0.6, 0.6, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 1 )
+Displacement = 120
+Height = 350
+Smoothing = 0.9
+LineStart = Vector2( -1000, -20 )
+LineEnd = Vector2( 2000, -20 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.5, 1 )
+
+[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxLayer"]
+position = Vector2( 0.78479, 0 )
+width = 20.0
+default_color = Color( 0.686275, 0.623529, 0.388235, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 1 )
+Displacement = 75
+Height = 200
+Smoothing = 1.0
+LineStart = Vector2( -1000, -5 )
+LineEnd = Vector2( 2000, -5 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.8, 1 )
+
+[node name="MidpointDisplacementLine" type="Line2D" parent="ParallaxLayer3"]
+position = Vector2( 0.78479, 0 )
+width = 20.0
+default_color = Color( 0.72549, 0.627451, 0.254902, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 1 )
+Displacement = 350
+Height = 200
+Smoothing = 1.2
+LineStart = Vector2( -1000, 400 )
+LineEnd = Vector2( 2000, 600 )

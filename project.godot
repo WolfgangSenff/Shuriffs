@@ -15,6 +15,16 @@ _global_script_classes=[ {
 "path": "res://assets/resources/speech/Duet.gd"
 }, {
 "base": "Resource",
+"class": "FolderListResource",
+"language": "GDScript",
+"path": "res://assets/resources/FolderListResource.gd"
+}, {
+"base": "Node",
+"class": "LineTrail",
+"language": "GDScript",
+"path": "res://addons/line_trail/LineTrail.gd"
+}, {
+"base": "Resource",
 "class": "SheriffResource",
 "language": "GDScript",
 "path": "res://assets/resources/SheriffResource.gd"
@@ -26,6 +36,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Duet": "",
+"FolderListResource": "",
+"LineTrail": "",
 "SheriffResource": "",
 "Speech": ""
 }
@@ -40,6 +52,8 @@ config/icon="res://icon.png"
 
 GlobalAudio="*res://scenes/globals/GlobalAudio.tscn"
 UniversalSaver="*res://addons/universal_saver/UniversalSaver.gd"
+Context="*res://scenes/globals/Context.tscn"
+Spawn="*res://scenes/globals/Spawn.gd"
 
 [debug]
 
@@ -47,7 +61,7 @@ gdscript/warnings/enable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "midpoint_displacement_line", "universal_saver" )
+enabled=PoolStringArray( "line_trail", "midpoint_displacement_line", "universal_saver" )
 
 [importer_defaults]
 
@@ -75,6 +89,13 @@ texture={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="PlayerCharacters"
+2d_physics/layer_2="EnemyCharacters"
+2d_physics/layer_3="Props"
+2d_physics/layer_4="Bullets"
 
 [rendering]
 

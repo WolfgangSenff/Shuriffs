@@ -1,7 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/gui/CharacterSelectionScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/SpeechFrame_ninepatch.png" type="Texture" id=2]
+[ext_resource path="res://assets/resources/themes/MainTheme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/characters/sheriffs/ChipPortrait.png" type="Texture" id=4]
+[ext_resource path="res://assets/gui/BackButton_normal.png" type="Texture" id=5]
+[ext_resource path="res://assets/gui/ForwardButton_normal.png" type="Texture" id=6]
+[ext_resource path="res://assets/gui/BackButton_hover.png" type="Texture" id=7]
+[ext_resource path="res://assets/gui/ForwardButton_hover.png" type="Texture" id=8]
+[ext_resource path="res://scenes/weapons/MuzzlePosition.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/gui/GoButton_normal.png" type="Texture" id=10]
+[ext_resource path="res://assets/gui/GoButton_hover.png" type="Texture" id=11]
+[ext_resource path="res://scenes/gui/StartScreenButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/gui/GoButton_pressed.png" type="Texture" id=13]
+[ext_resource path="res://scenes/weapons/StartScreenBullet.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "ShowCredits"
@@ -13,6 +25,7 @@ resource_name = "ShowCredits"
 [node name="CharacterSelectionScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -36,3 +49,118 @@ playback_speed = 2.0
 anims/ShowCredits = SubResource( 1 )
 anims/ShowGameOptions = SubResource( 2 )
 anims/ShowMainOptions = SubResource( 3 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+collapsed = true
+dragger_visibility = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer"]
+margin_right = 250.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 250, 600 )
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 580.0
+collapsed = true
+dragger_visibility = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer/MarginContainer/VSplitContainer"]
+margin_top = 72.0
+margin_right = 230.0
+margin_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 6
+custom_constants/separation = 40
+split_offset = 30
+collapsed = true
+dragger_visibility = 2
+
+[node name="PortraitRect" type="TextureRect" parent="HSplitContainer/MarginContainer/VSplitContainer/VSplitContainer"]
+margin_right = 230.0
+margin_bottom = 111.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+
+[node name="NameLabel" type="Label" parent="HSplitContainer/MarginContainer/VSplitContainer/VSplitContainer"]
+margin_top = 150.0
+margin_right = 230.0
+margin_bottom = 135.0
+text = "Chip Heartswell"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="GoooButton" parent="HSplitContainer/MarginContainer/VSplitContainer" instance=ExtResource( 12 )]
+margin_left = 15.0
+margin_top = 365.0
+margin_right = 215.0
+margin_bottom = 475.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 11 )
+stretch_mode = 5
+ToScreenPath = "World"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
+margin_left = 503.0
+margin_right = 771.0
+margin_bottom = 600.0
+mouse_filter = 2
+size_flags_horizontal = 6
+collapsed = true
+dragger_visibility = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/VSplitContainer"]
+margin_right = 268.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 0, 500 )
+
+[node name="StatsContainer" type="VBoxContainer" parent="HSplitContainer/VSplitContainer/ScrollContainer"]
+
+[node name="ScrollButtons" type="HSplitContainer" parent="HSplitContainer/VSplitContainer"]
+margin_top = 500.0
+margin_right = 268.0
+margin_bottom = 600.0
+mouse_filter = 2
+custom_constants/separation = 120
+collapsed = true
+
+[node name="ScrollLeftButton" type="TextureButton" parent="HSplitContainer/VSplitContainer/ScrollButtons"]
+margin_right = 74.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+
+[node name="MuzzlePosition" parent="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" instance=ExtResource( 9 )]
+rotation = -3.14159
+BulletScene = ExtResource( 14 )
+
+[node name="ScrollRightButton" type="TextureButton" parent="HSplitContainer/VSplitContainer/ScrollButtons"]
+margin_left = 194.0
+margin_right = 268.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 8 )
+
+[node name="MuzzlePosition" parent="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" instance=ExtResource( 9 )]
+position = Vector2( 75, 6 )
+BulletScene = ExtResource( 14 )
+[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" to="." method="_on_ScrollLeftButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" to="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton/MuzzlePosition" method="fire"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" to="." method="_on_ScrollRightButton_pressed"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" to="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton/MuzzlePosition" method="fire"]

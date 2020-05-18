@@ -117,3 +117,4 @@ position = Vector2( 233.09, 66.9798 )
 texture = ExtResource( 6 )
 flip_h = true
 hframes = 3
+[connection signal="pressed" from="." to="." method="_on_StartScreenButton_pressed"]
