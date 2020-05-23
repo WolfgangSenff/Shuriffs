@@ -10,9 +10,39 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "AttackResource",
+"language": "GDScript",
+"path": "res://assets/resources/AttackResource.gd"
+}, {
+"base": "Resource",
+"class": "CharacterResource",
+"language": "GDScript",
+"path": "res://CharacterResource.gd"
+}, {
+"base": "Resource",
 "class": "Duet",
 "language": "GDScript",
 "path": "res://assets/resources/speech/Duet.gd"
+}, {
+"base": "Resource",
+"class": "FolderListResource",
+"language": "GDScript",
+"path": "res://assets/resources/FolderListResource.gd"
+}, {
+"base": "Node",
+"class": "LineTrail",
+"language": "GDScript",
+"path": "res://addons/line_trail/LineTrail.gd"
+}, {
+"base": "Resource",
+"class": "MovementResource",
+"language": "GDScript",
+"path": "res://assets/resources/MovementResource.gd"
+}, {
+"base": "CharacterResource",
+"class": "SheriffResource",
+"language": "GDScript",
+"path": "res://assets/resources/SheriffResource.gd"
 }, {
 "base": "Resource",
 "class": "Speech",
@@ -20,7 +50,13 @@ _global_script_classes=[ {
 "path": "res://assets/resources/speech/IndividualSpeech.gd"
 } ]
 _global_script_class_icons={
+"AttackResource": "",
+"CharacterResource": "",
 "Duet": "",
+"FolderListResource": "",
+"LineTrail": "",
+"MovementResource": "",
+"SheriffResource": "",
 "Speech": ""
 }
 
@@ -34,6 +70,8 @@ config/icon="res://icon.png"
 
 GlobalAudio="*res://scenes/globals/GlobalAudio.tscn"
 UniversalSaver="*res://addons/universal_saver/UniversalSaver.gd"
+Context="*res://scenes/globals/Context.tscn"
+Spawn="*res://scenes/globals/Spawn.gd"
 
 [debug]
 
@@ -41,7 +79,7 @@ gdscript/warnings/enable=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "midpoint_displacement_line", "universal_saver" )
+enabled=PoolStringArray( "line_trail", "midpoint_displacement_line", "universal_saver" )
 
 [importer_defaults]
 
@@ -66,9 +104,24 @@ texture={
 "svg/scale": 1.0
 }
 
+[input]
+
+ui_mouse_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="PlayerCharacters"
+2d_physics/layer_2="EnemyCharacters"
+2d_physics/layer_3="Props"
+2d_physics/layer_4="Bullets"
 
 [rendering]
 

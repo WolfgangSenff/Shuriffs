@@ -27,11 +27,7 @@ func _unhandled_input(event):
         events[event.index] = event
         if events.size() == 1:
             var relative_event_pos = -event.relative.rotated(rotation) * zoom.x
-            #if position.x + relative_event_pos.x < limit_right or -relative_event_pos.x + position.x > limit_left:
             position += relative_event_pos
-            #position += relative_event_pos
-            # Not sure why the following doesn't prevent you from "moving" the camera outside the limits
-            #position = Vector2(clamp(position.x, limit_left, limit_right), clamp(position.y, limit_top, limit_bottom))
         elif events.size() == 2:
             var drag_distance = events[0].position.distance_to(events[1].position)
             if abs(drag_distance - last_drag_distance) > zoom_sensitivity:

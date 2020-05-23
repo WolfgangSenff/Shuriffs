@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://assets/resources/SheriffResource.gd" type="Script" id=1]
+[ext_resource path="res://assets/characters/sheriffs/ChipPortrait.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/sheriffs/Chip.png" type="Texture" id=3]
+[ext_resource path="res://scenes/characters/SheriffBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapons/GunScene.tscn" type="PackedScene" id=5]
+
+[resource]
+script = ExtResource( 1 )
+NickName = "Sheriff Chip"
+FullName = "Chip Thelonius Hearthat"
+CharacterDescription = "Chip Thelonius Hearthat, lovingly known as Sheriff Heart, is a robot. He grew up in rural Indiana and now he plays the foghorn in a jug band."
+GunScene = ExtResource( 5 )
+Portrait = ExtResource( 2 )
+FullBody = ExtResource( 3 )
+MaxSpeed = 200.0
+Acceleration = 1000.0
+Friction = 2000.0
+SheriffScene = ExtResource( 4 )

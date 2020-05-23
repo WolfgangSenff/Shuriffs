@@ -164,7 +164,7 @@ polygon = PoolVector2Array( 48, 48, 111, 18, 111, 66, 48, 96 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=11]
 content_margin_left = 6.0
 content_margin_right = 6.0
 content_margin_top = 6.0
@@ -242,7 +242,7 @@ margin_left = -300.0
 margin_right = 300.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 600, 300 )
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 11 )
 popup_exclusive = true
 script = ExtResource( 2 )
 __meta__ = {

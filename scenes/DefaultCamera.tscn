@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TouchScreenCamera.gd" type="Script" id=1]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( 716.48, 300.927 )
+current = true
+zoom = Vector2( 0.6, 0.6 )
+limit_left = -200
+limit_top = -500
+limit_right = 1500
+limit_bottom = 780
+editor_draw_limits = true
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
