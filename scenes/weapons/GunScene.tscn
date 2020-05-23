@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/weapons/MuzzlePosition.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/weapons/StartScreenBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/weapons/basic_six_shooter.png" type="Texture" id=3]
+[ext_resource path="res://scenes/weapons/GunScene.gd" type="Script" id=4]
+
+[node name="GunScene" type="Sprite"]
+position = Vector2( 30, 0 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="MuzzlePosition" parent="." instance=ExtResource( 1 )]
+position = Vector2( 13.3724, -2.4663 )
+BulletScene = ExtResource( 2 )

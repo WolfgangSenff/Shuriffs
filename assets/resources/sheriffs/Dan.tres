@@ -1,13 +1,20 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://assets/resources/SheriffResource.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/sheriffs/DanPortrait.png" type="Texture" id=2]
 [ext_resource path="res://assets/characters/sheriffs/Dan.png" type="Texture" id=3]
+[ext_resource path="res://scenes/characters/SheriffBase.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapons/GunScene.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 1 )
 NickName = "Dan"
 FullName = "Sheriff Dan"
 CharacterDescription = "Sheriff Dan could be better described as a strong-man. The strong arm of the law. Strengthy McStrengthface. What I mean to say is in battle, his special move is Arrest: if he's within two squares of any Underling, once per battle, he may arrest that Underling, instantly removing them from the fight."
+GunScene = ExtResource( 5 )
 Portrait = ExtResource( 2 )
 FullBody = ExtResource( 3 )
+MaxSpeed = 0.0
+Acceleration = 0.0
+Friction = 0.0
+SheriffScene = ExtResource( 4 )

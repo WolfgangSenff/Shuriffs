@@ -1,11 +1,12 @@
 extends Node2D
 
-onready var ground_astar = $YSort/Ground
+onready var player_holder = $YSort/PlayerHolder
 
 func _ready() -> void:
     randomize()
-    var astar_affectors = get_tree().get_nodes_in_group("AffectsAStarMap")
-    for affector in astar_affectors:
-        ground_astar.disable_astar_point(affector.global_position)
-        
     
+    var selected_sheriff = Context.current_sheriff_resource
+    var sheriff_scene = selected_sheriff.SheriffScene
+    var sheriff = sheriff_scene.instance()
+    player_holder.add_child(sheriff)
+    sheriff.CharacterResource = selected_sheriff
