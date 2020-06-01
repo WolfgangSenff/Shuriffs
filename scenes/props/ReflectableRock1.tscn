@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/props/Reflectable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/furniture/SandRock1_v.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[node name="ReflectableRock1" instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+shape = SubResource( 1 )
+rotate_collision_shape = true

@@ -29,15 +29,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://assets/resources/FolderListResource.gd"
 }, {
+"base": "TileMap",
+"class": "Generator",
+"language": "GDScript",
+"path": "res://dungeon_generator/Generator.gd"
+}, {
 "base": "Node",
 "class": "LineTrail",
 "language": "GDScript",
 "path": "res://addons/line_trail/LineTrail.gd"
 }, {
-"base": "Resource",
-"class": "MovementResource",
+"base": "RigidBody2D",
+"class": "Room",
 "language": "GDScript",
-"path": "res://assets/resources/MovementResource.gd"
+"path": "res://dungeon_generator/Room.gd"
 }, {
 "base": "CharacterResource",
 "class": "SheriffResource",
@@ -54,8 +59,9 @@ _global_script_class_icons={
 "CharacterResource": "",
 "Duet": "",
 "FolderListResource": "",
+"Generator": "",
 "LineTrail": "",
-"MovementResource": "",
+"Room": "",
 "SheriffResource": "",
 "Speech": ""
 }
@@ -76,6 +82,11 @@ Spawn="*res://scenes/globals/Spawn.gd"
 [debug]
 
 gdscript/warnings/enable=false
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -122,9 +133,11 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_2="EnemyCharacters"
 2d_physics/layer_3="Props"
 2d_physics/layer_4="Bullets"
+2d_physics/layer_5="Environment"
+2d_physics/layer_6="EnemyBullets"
 
 [rendering]
 
-environment/default_clear_color=Color( 0.529412, 0.807843, 0.921569, 1 )
+environment/default_clear_color=Color( 0.576471, 0.509804, 0.352941, 1 )
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

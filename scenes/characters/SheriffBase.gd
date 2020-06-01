@@ -1,9 +1,8 @@
 extends KinematicBody2D
 
-signal character_selected(character)
+signal dead
 
 onready var sprite = $YSort/CharacterSprite
-onready var nickname = $NicknameLabel
 onready var gun_holder = $YSort/GunHolder
 var gun_scene
 
@@ -12,18 +11,19 @@ export (Resource) onready var CharacterResource setget set_sheriff_resource
 export (float) var MaxSpeed
 export (float) var Acceleration
 export (float) var Friction
+export (int) var HP
 
 var motion := Vector2()
         
 func set_sheriff_resource(value):
     CharacterResource = value
     sprite.texture = CharacterResource.FullBody
-    nickname.text = CharacterResource.NickName
     gun_scene = CharacterResource.GunScene.instance()
     $YSort/GunHolder.add_child(gun_scene)
     MaxSpeed = CharacterResource.MaxSpeed
     Acceleration = CharacterResource.Acceleration
     Friction = CharacterResource.Friction
+    HP = CharacterResource.HP
 
 func _physics_process(delta: float) -> void:
     var mouse_pos = get_local_mouse_position()
@@ -48,3 +48,8 @@ func get_input_direction() -> Vector2:
         Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
         Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
        )
+
+func _on_HitBox_area_entered(area: Area2D) -> void:
+    HP -= area.Damage
+    if HP <= 0:
+        emit_signal("dead")

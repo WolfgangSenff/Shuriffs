@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/characters/SheriffBase.gd" type="Script" id=1]
-[ext_resource path="res://assets/characters/sheriffs/Dan.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/sheriffs/Chip.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 9.14138
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.31225
 
 [node name="SheriffBase" type="KinematicBody2D"]
+collision_mask = 20
 script = ExtResource( 1 )
 
 [node name="YSort" type="YSort" parent="."]
@@ -11,25 +19,24 @@ skew = 4.37114e-08
 
 [node name="CharacterSprite" type="Sprite" parent="YSort"]
 skew = 4.37114e-08
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="GunHolder" type="YSort" parent="YSort"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.550793, -1.46877 )
 skew = 4.37114e-08
-
-[node name="NicknameLabel" type="Label" parent="."]
-margin_left = -19.0
-margin_top = -47.0
-margin_right = 21.0
-margin_bottom = -32.0
-grow_horizontal = 2
-rect_min_size = Vector2( 40, 15 )
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( -0.852859, -2.55858 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

@@ -7,6 +7,7 @@ onready var collision_shape = $CollisionShape2D
 export (Texture) onready var texture setget set_texture
 export (Shape2D) onready var shape setget set_shape
 export (bool) onready var rotate_collision_shape
+export (bool) var IsFurniture = false
 
 func _ready():
     if rotate_collision_shape and collision_shape:

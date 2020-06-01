@@ -95,7 +95,7 @@ texture = ExtResource( 4 )
 stretch_mode = 4
 
 [node name="NameLabel" type="Label" parent="HSplitContainer/MarginContainer/VSplitContainer/VSplitContainer"]
-margin_top = 150.0
+margin_top = 111.0
 margin_right = 230.0
 margin_bottom = 135.0
 text = "Chip Heartswell"
@@ -114,7 +114,7 @@ texture_normal = ExtResource( 10 )
 texture_pressed = ExtResource( 13 )
 texture_hover = ExtResource( 11 )
 stretch_mode = 5
-ToScreenPath = "World"
+ToScreenPath = "levels/LevelBase"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
 margin_left = 503.0
@@ -160,7 +160,7 @@ texture_hover = ExtResource( 8 )
 [node name="MuzzlePosition" parent="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" instance=ExtResource( 9 )]
 position = Vector2( 75, 6 )
 BulletScene = ExtResource( 14 )
-[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" to="." method="_on_ScrollLeftButton_pressed"]
 [connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" to="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton/MuzzlePosition" method="fire"]
+[connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollLeftButton" to="." method="_on_ScrollLeftButton_pressed"]
 [connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" to="." method="_on_ScrollRightButton_pressed"]
 [connection signal="pressed" from="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton" to="HSplitContainer/VSplitContainer/ScrollButtons/ScrollRightButton/MuzzlePosition" method="fire"]
