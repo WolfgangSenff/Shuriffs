@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/weapons/MuzzlePosition.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/weapons/basic_six_shooter.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/enemies/EnemyTableSE.png" type="Texture" id=3]
+[ext_resource path="res://assets/characters/enemies/BadHat1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/characters/enemies/BadHatEnemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/weapons/EnemyBullet.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 11.5631
+
+[sub_resource type="Animation" id=2]
+resource_name = "Popout"
+tracks/0/type = "value"
+tracks/0/path = NodePath("YSort/EnemyArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4.14106, 0.297302 ),
+"update": 0,
+"values": [ Vector2( 4.55965, 9.77068 ), Vector2( -24.2739, 32.5693 ) ]
+}
+
+[node name="BadHatEnemy1SE" instance=ExtResource( 5 )]
+WaitTimeBetweenShots = 6
+RotationSpeed = 150.0
+
+[node name="Sprite" parent="YSort/HidingArea" index="0"]
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" parent="YSort/HidingArea" index="1"]
+polygon = PoolVector2Array( -23.6122, 12.5171, 17.7504, -11.9096, 23.9385, -2.13892, -20.3553, 23.5905 )
+
+[node name="EnemyArea" parent="YSort" index="1"]
+position = Vector2( 4.55965, 9.77068 )
+
+[node name="Sprite" parent="YSort/EnemyArea" index="0"]
+texture = ExtResource( 4 )
+
+[node name="Pivot" parent="YSort/EnemyArea" index="1"]
+rotation = -2.16487
+
+[node name="GunSprite" parent="YSort/EnemyArea/Pivot" index="0"]
+position = Vector2( 26.4214, -0.126858 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="MuzzlePosition" parent="YSort/EnemyArea/Pivot/GunSprite" index="0" instance=ExtResource( 1 )]
+position = Vector2( 14.7522, -2.71712 )
+BulletScene = ExtResource( 6 )
+
+[node name="CollisionShape2D" parent="YSort/EnemyArea" index="2"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Popout = SubResource( 2 )

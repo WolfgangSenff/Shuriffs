@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/characters/enemies/BadHatEnemy.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/enemies/EnemyHidingArea.gd" type="Script" id=2]
+[ext_resource path="res://scenes/characters/enemies/EnemyArea.gd" type="Script" id=3]
+
+[node name="BadHatEnemy" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="HidingArea" type="Area2D" parent="YSort"]
+skew = 4.37114e-08
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="YSort/HidingArea"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/HidingArea"]
+
+[node name="EnemyArea" type="Area2D" parent="YSort"]
+skew = 4.37114e-08
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="YSort/EnemyArea"]
+skew = 4.37114e-08
+
+[node name="Pivot" type="Node2D" parent="YSort/EnemyArea"]
+skew = 4.37114e-08
+
+[node name="GunSprite" type="Sprite" parent="YSort/EnemyArea/Pivot"]
+skew = 4.37114e-08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/EnemyArea"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="PopoutTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true
+[connection signal="area_entered" from="YSort/HidingArea" to="YSort/HidingArea" method="_on_HidingArea_area_entered"]
+[connection signal="area_entered" from="YSort/EnemyArea" to="YSort/EnemyArea" method="_on_EnemyArea_area_entered"]
+[connection signal="timeout" from="PopoutTimer" to="." method="_on_PopoutTimer_timeout"]

@@ -17,4 +17,5 @@ FullBody = ExtResource( 3 )
 MaxSpeed = 200.0
 Acceleration = 1000.0
 Friction = 2000.0
+HP = 20
 SheriffScene = ExtResource( 4 )

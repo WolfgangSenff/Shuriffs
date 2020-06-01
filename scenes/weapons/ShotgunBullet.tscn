@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/weapons/StartScreenBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/weapons/shotgun_muzzle_smoke_spritesheet.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_physics_process"
+} ]
+}
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node
+class_name LineTrail
+
+export (int) onready var TrailLength
+export (int) onready var TrailWidth
+export (Curve2D) onready var TrailWidthCurve
+export (Color) onready var DefaultColor
+export (Gradient) onready var gradient
+export (Texture) onready var texture
+export (int, \"None\", \"Tile\", \"Stretch\") onready var TextureMode
+
+var line : Line2D
+
+func _ready():
+    line = Line2D.new()
+    add_child(line)
+    call_deferred(\"set_all_values\")
+    
+func set_all_values():
+    if TrailWidth:
+        line.width = TrailWidth
+    if TrailWidthCurve:
+        line.width_curve = TrailWidthCurve
+    if DefaultColor:
+        line.default_color = DefaultColor
+    if gradient:
+        line.gradient = gradient
+    if texture:
+        line.texture = texture
+    if TextureMode != -1:
+        line.texture_mode = TextureMode
+
+func _process(delta: float) -> void:
+    if line.points.size() > TrailLength:
+        line.remove_point(0)
+    
+    line.add_point(owner.global_position)
+"
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.847059 )
+
+[node name="ShotgunBullet" instance=ExtResource( 1 )]
+Speed = 400.0
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+hframes = 3
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="2"]
+anims/Fire = SubResource( 1 )
+
+[node name="LineTrail" parent="." index="3"]
+script = SubResource( 2 )
+TrailWidth = 0
+gradient = SubResource( 3 )

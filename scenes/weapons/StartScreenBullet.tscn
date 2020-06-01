@@ -42,6 +42,8 @@ tracks/1/keys = {
 colors = PoolColorArray( 0, 0, 0, 0, 1, 0.879386, 0.879386, 1 )
 
 [node name="StartScreenBullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 Speed = 300.0
 
@@ -62,3 +64,6 @@ TrailLength = 20
 TrailWidth = 5
 DefaultColor = Color( 1, 1, 1, 1 )
 gradient = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
